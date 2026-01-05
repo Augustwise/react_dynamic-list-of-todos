@@ -18,7 +18,7 @@ export const App: React.FC = () => {
   const [selectedTodoId, setSelectedTodoId] = useState<number | null>(null);
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [timerSearchQuery, setimerSearchQuery] = useState('');
+  const [timerSearchQuery, setTimerSearchQuery] = useState('');
 
   useEffect(() => {
     getTodos()
@@ -28,7 +28,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setimerSearchQuery(searchQuery);
+      setTimerSearchQuery(searchQuery);
     }, 600);
 
     return () => clearTimeout(timer);

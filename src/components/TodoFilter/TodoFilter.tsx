@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 type StatusFilter = 'all' | 'active' | 'completed';
 
 interface Props {
@@ -35,7 +37,11 @@ export const TodoFilter: React.FC<Props> = ({
         </span>
       </p>
 
-      <p className="control is-expanded has-icons-left has-icons-right">
+      <p
+        className={classNames('control', 'is-expanded', 'has-icons-left', {
+          'has-icons-right': searchQuery,
+        })}
+      >
         <input
           data-cy="searchInput"
           type="text"
@@ -48,15 +54,17 @@ export const TodoFilter: React.FC<Props> = ({
           <i className="fas fa-magnifying-glass" />
         </span>
 
-        <span className="icon is-right" style={{ pointerEvents: 'all' }}>
-          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-          <button
-            data-cy="clearSearchButton"
-            type="button"
-            className="delete"
-            onClick={handleClear}
-          />
-        </span>
+        {searchQuery && (
+          <span className="icon is-right" style={{ pointerEvents: 'all' }}>
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+            <button
+              data-cy="clearSearchButton"
+              type="button"
+              className="delete"
+              onClick={handleClear}
+            />
+          </span>
+        )}
       </p>
     </form>
   );
